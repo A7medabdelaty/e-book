@@ -1,6 +1,9 @@
+import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/assets.dart';
 import 'package:bookly/services/home/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
+
+import 'animated_text.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({
@@ -11,11 +14,22 @@ class SplashViewBody extends StatefulWidget {
   State<SplashViewBody> createState() => _SplashViewBodyState();
 }
 
-class _SplashViewBodyState extends State<SplashViewBody> {
+class _SplashViewBodyState extends State<SplashViewBody>
+    with SingleTickerProviderStateMixin {
+  late AnimationController animationController;
+  late Animation<Offset> slidingAnimation;
+
   @override
   void initState() {
     super.initState();
+    initSlidingAnimation();
     navigateToHome();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    animationController.dispose();
   }
 
   @override
@@ -30,10 +44,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
         const SizedBox(
           height: 15,
         ),
-        const Text(
-          "Read Free Books",
-          textAlign: TextAlign.center,
-        ),
+        AnimatedText(slidingAnimation: slidingAnimation),
       ],
     );
   }
@@ -45,5 +56,19 @@ class _SplashViewBodyState extends State<SplashViewBody> {
         Navigator.pushReplacementNamed(context, HomeView.routeName);
       },
     );
+  }
+
+  void initSlidingAnimation() {
+    animationController = AnimationController(
+      vsync: this,
+      duration: kSlidingDuration,
+    );
+
+    slidingAnimation = Tween<Offset>(
+      begin: const Offset(0, 2),
+      end: Offset.zero,
+    ).animate(animationController);
+
+    animationController.forward();
   }
 }
