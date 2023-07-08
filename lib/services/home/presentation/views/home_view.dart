@@ -1,3 +1,5 @@
+import 'package:bookly/services/home/presentation/views/widgets/custom_appbar.dart';
+import 'package:bookly/services/home/presentation/views/widgets/home_hilight_list.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {
@@ -7,9 +9,12 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("Home View"),
+    return Scaffold(
+      body: Column(
+        children: const [
+          CustomAppbar(),
+          HomeHighlightList(),
+        ],
       ),
     );
   }
