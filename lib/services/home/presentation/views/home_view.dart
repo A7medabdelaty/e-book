@@ -18,7 +18,7 @@ class HomeView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomAppbar(),
+            HomeAppbar(),
             HomeHighlightList(),
             TitleText(),
             HomeBestSellerList(),

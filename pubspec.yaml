@@ -81,6 +81,9 @@ flutter:
     - family: sectra
       fonts:
         - asset: assets/fonts/gt-sectra-fine-black.ttf
+        - asset: assets/fonts/gt-sectra-fine-bold.ttf
+        - asset: assets/fonts/gt-sectra-fine-book.ttf
+        - asset: assets/fonts/gt-sectra-fine-medium.ttf
           style: normal
   #   - family: Trajan Pro
   #     fonts:
