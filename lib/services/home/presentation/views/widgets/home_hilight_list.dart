@@ -7,15 +7,15 @@ class HomeHighlightList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      height: MediaQuery
-          .of(context)
-          .size
-          .height * 0.3,
-      child: ListView.builder(
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.237,
+      child: ListView.separated(
+        separatorBuilder: (context, index) => const SizedBox(
+          width: 15.0,
+        ),
         itemBuilder: (context, index) => const HomeHighlightListItem(),
         scrollDirection: Axis.horizontal,
+        itemCount: 50,
       ),
     );
   }

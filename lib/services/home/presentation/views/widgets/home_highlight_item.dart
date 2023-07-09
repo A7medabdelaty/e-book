@@ -9,7 +9,6 @@ class HomeHighlightListItem extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 6 / 9,
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
         decoration: BoxDecoration(
           color: Colors.red,
           borderRadius: BorderRadius.circular(8.0),
