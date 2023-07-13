@@ -13,17 +13,22 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Padding(
-        padding: EdgeInsets.only(left: 30.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            HomeAppbar(),
-            HomeHighlightList(),
-            TitleText(),
-            HomeBestSellerList(),
-          ],
-        ),
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                HomeAppbar(),
+                HomeHighlightList(),
+                TitleText(),
+              ],
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: HomeBestSellerList(),
+          ),
+        ],
       ),
     );
   }

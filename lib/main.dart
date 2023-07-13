@@ -1,6 +1,6 @@
 import 'package:bookly/constants.dart';
-import 'package:bookly/services/details/presentation/view/details_view.dart';
 import 'package:bookly/services/home/presentation/views/home_view.dart';
+import 'package:bookly/services/splash/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -23,7 +23,7 @@ class MainApp extends StatelessWidget {
       routes: {
         HomeView.routeName: (context) => const HomeView(),
       },
-      home: const DetailsView(),
+      home: const SplashView(),
     );
   }
 }

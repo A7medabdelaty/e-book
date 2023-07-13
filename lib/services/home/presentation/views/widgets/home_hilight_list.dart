@@ -9,10 +9,7 @@ class HomeHighlightList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.237,
-      child: ListView.separated(
-        separatorBuilder: (context, index) => const SizedBox(
-          width: 15.0,
-        ),
+      child: ListView.builder(
         itemBuilder: (context, index) => const HomeHighlightListItem(),
         scrollDirection: Axis.horizontal,
         itemCount: 50,
