@@ -1,3 +1,4 @@
+import 'package:bookly/services/details/presentation/view/details_view.dart';
 import 'package:bookly/services/home/presentation/views/widgets/home_bestseller_item.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,12 @@ class HomeBestSellerList extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: 20,
-      itemBuilder: (context, index) => const HomeBestSellerItem(),
+      itemBuilder: (context, index) => InkWell(
+        onTap: () {
+          Navigator.pushNamed(context, DetailsView.routeName);
+        },
+        child: const HomeBestSellerItem(),
+      ),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:bookly/constants.dart';
+import 'package:bookly/services/details/presentation/view/details_view.dart';
 import 'package:bookly/services/home/presentation/views/home_view.dart';
 import 'package:bookly/services/splash/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ class MainApp extends StatelessWidget {
       ),
       routes: {
         HomeView.routeName: (context) => const HomeView(),
+        DetailsView.routeName:(context) => const DetailsView(),
       },
       home: const SplashView(),
     );
