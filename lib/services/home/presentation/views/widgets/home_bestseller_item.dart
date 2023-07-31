@@ -1,6 +1,7 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/assets.dart';
 import 'package:bookly/core/utils/text_styles.dart';
+import 'package:bookly/services/details/presentation/view/details_view.dart';
 import 'package:flutter/material.dart';
 
 import 'book_rating.dart';
@@ -10,8 +11,10 @@ class HomeBestSellerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, DetailsView.routeName);
+      },
       child: Row(
         children: [
           Image.asset(
