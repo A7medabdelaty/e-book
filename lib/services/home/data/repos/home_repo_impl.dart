@@ -30,11 +30,10 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<BookModel>>> fetchFeaturedBooks(
-      {required String query}) async {
+  Future<Either<Failure, List<BookModel>>> fetchFeaturedBooks() async {
     try {
       Map<String, dynamic> response =
-          await apiService.get(endPoint: 'volumes?q=subject:$query');
+          await apiService.get(endPoint: 'volumes?q=subject:Programming');
       List<BookModel> books = [];
       for (var item in response['items']) {
         books.add(BookModel.fromJson(item));
