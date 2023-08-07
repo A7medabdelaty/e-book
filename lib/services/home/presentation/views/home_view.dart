@@ -12,20 +12,22 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                HomeAppbar(),
-                FeaturedBooksList(),
-                TitleText(),
+                const HomeAppbar(),
+                SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.237,
+                    child: const FeaturedBooksList()),
+                const TitleText(),
               ],
             ),
           ),
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: NewestBooksList(),
           ),
         ],

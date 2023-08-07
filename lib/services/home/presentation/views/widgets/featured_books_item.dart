@@ -1,8 +1,11 @@
-import 'package:bookly/core/utils/assets.dart';
+import 'package:bookly/services/home/data/models/book_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class FeaturedBooksListItem extends StatelessWidget {
-  const FeaturedBooksListItem({super.key});
+  const FeaturedBooksListItem({super.key, required this.bookModel});
+
+  final BookModel bookModel;
 
   @override
   Widget build(BuildContext context) {
@@ -10,15 +13,13 @@ class FeaturedBooksListItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: AspectRatio(
         aspectRatio: 6 / 9,
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.red,
-            borderRadius: BorderRadius.circular(8.0),
-            image: const DecorationImage(
-              fit: BoxFit.fill,
-              image: AssetImage(
-                AppAssets.testImage,
-              ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8.0),
+          child: CachedNetworkImage(
+            fit: BoxFit.fill,
+            imageUrl: bookModel.volumeInfo?.imageLinks?.thumbnail ?? '',
+            errorWidget: (context, url, error) => const Center(
+              child: Icon(Icons.error),
             ),
           ),
         ),
