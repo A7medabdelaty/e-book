@@ -25,7 +25,7 @@ class FeaturedBooksList extends StatelessWidget {
         } else if (state is FeaturedBooksFailure) {
           return CustomErrorMessage(state.errMessage);
         } else {
-          return const CustomProgressIndicator();
+          return const CustomLoadingIndicator();
         }
       },
     );

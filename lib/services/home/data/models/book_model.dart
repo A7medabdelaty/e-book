@@ -10,13 +10,13 @@ class BookModel {
 
   BookModel(
       {this.kind,
-        this.id,
-        this.etag,
-        this.selfLink,
-        this.volumeInfo,
-        this.saleInfo,
-        this.accessInfo,
-        this.searchInfo});
+      this.id,
+      this.etag,
+      this.selfLink,
+      this.volumeInfo,
+      this.saleInfo,
+      this.accessInfo,
+      this.searchInfo});
 
   BookModel.fromJson(Map<String, dynamic> json) {
     kind = json['kind'];
@@ -26,9 +26,8 @@ class BookModel {
     volumeInfo = json['volumeInfo'] != null
         ? VolumeInfo.fromJson(json['volumeInfo'])
         : null;
-    saleInfo = json['saleInfo'] != null
-        ? SaleInfo.fromJson(json['saleInfo'])
-        : null;
+    saleInfo =
+        json['saleInfo'] != null ? SaleInfo.fromJson(json['saleInfo']) : null;
     accessInfo = json['accessInfo'] != null
         ? AccessInfo.fromJson(json['accessInfo'])
         : null;
@@ -80,33 +79,37 @@ class VolumeInfo {
   String? previewLink;
   String? infoLink;
   String? canonicalVolumeLink;
+  num? averageRating;
+  int? ratingsCount;
 
   VolumeInfo(
       {this.title,
-        this.subtitle,
-        this.authors,
-        this.publisher,
-        this.publishedDate,
-        this.description,
-        this.industryIdentifiers,
-        this.readingModes,
-        this.pageCount,
-        this.printType,
-        this.categories,
-        this.maturityRating,
-        this.allowAnonLogging,
-        this.contentVersion,
-        this.panelizationSummary,
-        this.imageLinks,
-        this.language,
-        this.previewLink,
-        this.infoLink,
-        this.canonicalVolumeLink});
+      this.subtitle,
+      this.authors,
+      this.publisher,
+      this.publishedDate,
+      this.description,
+      this.industryIdentifiers,
+      this.readingModes,
+      this.pageCount,
+      this.printType,
+      this.categories,
+      this.averageRating,
+      this.ratingsCount,
+      this.maturityRating,
+      this.allowAnonLogging,
+      this.contentVersion,
+      this.panelizationSummary,
+      this.imageLinks,
+      this.language,
+      this.previewLink,
+      this.infoLink,
+      this.canonicalVolumeLink});
 
   VolumeInfo.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     subtitle = json['subtitle'];
-    authors = json['authors'].cast<String>();
+    authors = json['authors']?.cast<String>();
     publisher = json['publisher'];
     publishedDate = json['publishedDate'];
     description = json['description'];
@@ -121,7 +124,9 @@ class VolumeInfo {
         : null;
     pageCount = json['pageCount'];
     printType = json['printType'];
-    categories = json['categories'].cast<String>();
+    categories = json['categories']?.cast<String>();
+    averageRating = json['averageRating'] ?? 0;
+    ratingsCount = json['ratingsCount'] ?? 0;
     maturityRating = json['maturityRating'];
     allowAnonLogging = json['allowAnonLogging'];
     contentVersion = json['contentVersion'];
@@ -259,12 +264,12 @@ class SaleInfo {
 
   SaleInfo(
       {this.country,
-        this.saleability,
-        this.isEbook,
-        this.listPrice,
-        this.retailPrice,
-        this.buyLink,
-        this.offers});
+      this.saleability,
+      this.isEbook,
+      this.listPrice,
+      this.retailPrice,
+      this.buyLink,
+      this.offers});
 
   SaleInfo.fromJson(Map<String, dynamic> json) {
     country = json['country'];
@@ -386,15 +391,15 @@ class AccessInfo {
 
   AccessInfo(
       {this.country,
-        this.viewability,
-        this.embeddable,
-        this.publicDomain,
-        this.textToSpeechPermission,
-        this.epub,
-        this.pdf,
-        this.webReaderLink,
-        this.accessViewStatus,
-        this.quoteSharingAllowed});
+      this.viewability,
+      this.embeddable,
+      this.publicDomain,
+      this.textToSpeechPermission,
+      this.epub,
+      this.pdf,
+      this.webReaderLink,
+      this.accessViewStatus,
+      this.quoteSharingAllowed});
 
   AccessInfo.fromJson(Map<String, dynamic> json) {
     country = json['country'];

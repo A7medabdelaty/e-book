@@ -1,13 +1,16 @@
 import 'package:bookly/constants.dart';
-import 'package:bookly/core/utils/assets.dart';
 import 'package:bookly/core/utils/text_styles.dart';
 import 'package:bookly/services/details/presentation/view/details_view.dart';
+import 'package:bookly/services/home/data/models/book_model.dart';
+import 'package:bookly/services/home/presentation/views/widgets/book_image_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'book_rating.dart';
 
 class HomeBestSellerItem extends StatelessWidget {
-  const HomeBestSellerItem({super.key});
+  const HomeBestSellerItem({super.key, required this.bookModel});
+
+  final BookModel bookModel;
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +20,9 @@ class HomeBestSellerItem extends StatelessWidget {
       },
       child: Row(
         children: [
-          Image.asset(
-            AppAssets.bookImage,
+          SizedBox(
             width: MediaQuery.of(context).size.width * 0.25,
+            child: BookImageWidget(bookModel: bookModel),
           ),
           const SizedBox(
             width: 30,
@@ -29,7 +32,7 @@ class HomeBestSellerItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Harry Potter and the Goblet of Fire",
+                  '${bookModel.volumeInfo?.title}',
                   style: AppTextStyles.text20.copyWith(
                     fontFamily: kGTSectraFine,
                   ),
@@ -39,10 +42,10 @@ class HomeBestSellerItem extends StatelessWidget {
                 const SizedBox(
                   height: 3,
                 ),
-                const Opacity(
+                Opacity(
                   opacity: 0.7,
                   child: Text(
-                    "J.K. Rowling",
+                    "${bookModel.volumeInfo?.authors?[0]}",
                     style: AppTextStyles.text14,
                   ),
                 ),
@@ -51,14 +54,18 @@ class HomeBestSellerItem extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Text(
-                      "19.99 €",
-                      style: AppTextStyles.text20.copyWith(
-                        fontWeight: FontWeight.bold,
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.23,
+                      child: Text(
+                        bookModel.saleInfo?.saleability == 'FOR_SALE'
+                            ? '${bookModel.saleInfo?.listPrice?.amount?.round()} ${bookModel.saleInfo?.listPrice?.currencyCode}'
+                            : 'Free',
+                        overflow: TextOverflow.ellipsis,
+                        style: AppTextStyles.text16.copyWith(fontWeight: FontWeight.bold),
                       ),
                     ),
                     const Spacer(),
-                    const BookRating(),
+                    BookRating(averageRating: bookModel.volumeInfo!.averageRating!,ratingCount: bookModel.volumeInfo!.ratingsCount!),
                   ],
                 ),
               ],

@@ -27,7 +27,7 @@ class MainApp extends StatelessWidget {
             create: (context) => FeaturedBooksCubit(getIt.get<HomeRepoImpl>())
               ..getFeaturedBooks()),
         BlocProvider(
-            create: (context) => NewestBooksCubit(getIt.get<HomeRepoImpl>())),
+            create: (context) => NewestBooksCubit(getIt.get<HomeRepoImpl>())..getNewestBooks()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

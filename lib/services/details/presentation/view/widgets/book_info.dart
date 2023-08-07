@@ -38,7 +38,7 @@ class BookInformationCard extends StatelessWidget {
         const SizedBox(
           height: 16,
         ),
-        const BookRating(),
+        const BookRating(averageRating: 0,ratingCount: 0),
         const SizedBox(
           height: 30,
         ),
