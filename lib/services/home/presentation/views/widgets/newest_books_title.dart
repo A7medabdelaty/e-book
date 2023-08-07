@@ -14,7 +14,7 @@ class TitleText extends StatelessWidget {
             height: 50,
           ),
           Text(
-            "Best Seller",
+            "Newest Books",
             style: AppTextStyles.text18,
           ),
         ],
