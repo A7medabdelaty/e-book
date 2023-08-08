@@ -1,7 +1,5 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/service_locator.dart';
-import 'package:bookly/services/details/data/repos/details_repo_impl.dart';
-import 'package:bookly/services/details/presentation/view%20model/similar_books_cubit.dart';
 import 'package:bookly/services/details/presentation/view/details_view.dart';
 import 'package:bookly/services/home/data/repos/home_repo_impl.dart';
 import 'package:bookly/services/home/presentation/view%20model/featured%20books%20cubit/featured_books_cubit.dart';
@@ -34,9 +32,6 @@ class MainApp extends StatelessWidget {
         BlocProvider(
             create: (context) =>
                 NewestBooksCubit(getIt.get<HomeRepoImpl>())..getNewestBooks()),
-        BlocProvider(
-          create: (context) => SimilarBooksCubit(getIt.get<DetailsRepoImpl>()),
-        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -48,7 +43,7 @@ class MainApp extends StatelessWidget {
         ),
         routes: {
           HomeView.routeName: (context) => const HomeView(),
-          DetailsView.routeName: (context) => DetailsView(),
+          DetailsView.routeName: (context) => const DetailsView(),
           SearchView.routeName: (context) => const SearchView(),
         },
         home: const SplashView(),

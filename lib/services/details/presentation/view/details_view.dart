@@ -1,29 +1,38 @@
+import 'package:bookly/core/utils/service_locator.dart';
+import 'package:bookly/services/details/data/repos/details_repo_impl.dart';
+import 'package:bookly/services/details/presentation/view%20model/similar_books_cubit.dart';
 import 'package:bookly/services/details/presentation/view/widgets/book_info.dart';
 import 'package:bookly/services/details/presentation/view/widgets/custom_appbar.dart';
 import 'package:bookly/services/details/presentation/view/widgets/custom_buttons.dart';
 import 'package:bookly/services/details/presentation/view/widgets/similar_books_list.dart';
 import 'package:bookly/services/home/data/models/book_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DetailsView extends StatelessWidget {
-  DetailsView({super.key});
+  const DetailsView({super.key});
 
   static const String routeName = 'details view';
 
-  late final BookModel bookModel;
-
   @override
   Widget build(BuildContext context) {
-    bookModel = ModalRoute.of(context)?.settings.arguments as BookModel;
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const DetailsAppbar(),
-            const BookInformationCard(),
-            const CustomButtons(),
-            SimilarBooksList(bookModel: bookModel),
-          ],
+    BookModel bookModel =
+        ModalRoute.of(context)?.settings.arguments as BookModel;
+    return BlocProvider(
+      create: (context) => SimilarBooksCubit(getIt.get<DetailsRepoImpl>()),
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const DetailsAppbar(),
+              BookInformationCard(bookModel: bookModel),
+              CustomButtons(
+                price: bookModel.saleInfo?.listPrice?.amount?.round().toString() ?? 'Free',
+                countryCode: bookModel.saleInfo?.listPrice?.currencyCode ?? '',
+              ),
+              SimilarBooksList(bookModel: bookModel),
+            ],
+          ),
         ),
       ),
     );

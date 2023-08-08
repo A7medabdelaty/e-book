@@ -8,7 +8,7 @@ class DetailsAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+        padding: const EdgeInsets.only(left: 30,right: 30, bottom: 30,top: 10),
         child: Row(
           children: [
             IconButton(

@@ -33,7 +33,7 @@ class BookRating extends StatelessWidget {
         Opacity(
           opacity: 0.5,
           child: Text(
-            "$ratingCount",
+            "($ratingCount)",
             style: AppTextStyles.text14.copyWith(
               fontWeight: FontWeight.normal,
             ),
