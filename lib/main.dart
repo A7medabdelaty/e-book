@@ -1,5 +1,7 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/service_locator.dart';
+import 'package:bookly/services/details/data/repos/details_repo_impl.dart';
+import 'package:bookly/services/details/presentation/view%20model/similar_books_cubit.dart';
 import 'package:bookly/services/details/presentation/view/details_view.dart';
 import 'package:bookly/services/home/data/repos/home_repo_impl.dart';
 import 'package:bookly/services/home/presentation/view%20model/featured%20books%20cubit/featured_books_cubit.dart';
@@ -11,8 +13,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'bloc_observer.dart';
+
 void main() {
   setupServiceLocator();
+  Bloc.observer = MyBlocObserver();
   runApp(const MainApp());
 }
 
@@ -27,7 +32,11 @@ class MainApp extends StatelessWidget {
             create: (context) => FeaturedBooksCubit(getIt.get<HomeRepoImpl>())
               ..getFeaturedBooks()),
         BlocProvider(
-            create: (context) => NewestBooksCubit(getIt.get<HomeRepoImpl>())..getNewestBooks()),
+            create: (context) =>
+                NewestBooksCubit(getIt.get<HomeRepoImpl>())..getNewestBooks()),
+        BlocProvider(
+          create: (context) => SimilarBooksCubit(getIt.get<DetailsRepoImpl>()),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -39,7 +48,7 @@ class MainApp extends StatelessWidget {
         ),
         routes: {
           HomeView.routeName: (context) => const HomeView(),
-          DetailsView.routeName: (context) => const DetailsView(),
+          DetailsView.routeName: (context) => DetailsView(),
           SearchView.routeName: (context) => const SearchView(),
         },
         home: const SplashView(),
