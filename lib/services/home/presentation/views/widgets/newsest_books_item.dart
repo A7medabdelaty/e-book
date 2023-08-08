@@ -16,7 +16,11 @@ class HomeBestSellerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, DetailsView.routeName);
+        Navigator.pushNamed(
+          context,
+          DetailsView.routeName,
+          arguments: bookModel,
+        );
       },
       child: Row(
         children: [
@@ -61,11 +65,14 @@ class HomeBestSellerItem extends StatelessWidget {
                             ? '${bookModel.saleInfo?.listPrice?.amount?.round()} ${bookModel.saleInfo?.listPrice?.currencyCode}'
                             : 'Free',
                         overflow: TextOverflow.ellipsis,
-                        style: AppTextStyles.text16.copyWith(fontWeight: FontWeight.bold),
+                        style: AppTextStyles.text16
+                            .copyWith(fontWeight: FontWeight.bold),
                       ),
                     ),
                     const Spacer(),
-                    BookRating(averageRating: bookModel.volumeInfo!.averageRating!,ratingCount: bookModel.volumeInfo!.ratingsCount!),
+                    BookRating(
+                        averageRating: bookModel.volumeInfo!.averageRating!,
+                        ratingCount: bookModel.volumeInfo!.ratingsCount!),
                   ],
                 ),
               ],

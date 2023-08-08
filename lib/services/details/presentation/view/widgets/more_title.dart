@@ -6,23 +6,20 @@ class MoreTitleText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30.0),
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 40,
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 40,
+          ),
+          Text(
+            "You can also like",
+            style: AppTextStyles.text14.copyWith(
+              fontWeight: FontWeight.w600,
             ),
-            Text(
-              "You can also like",
-              style: AppTextStyles.text14.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
