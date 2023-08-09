@@ -1,6 +1,8 @@
+import 'package:bookly/services/details/presentation/views/details_view.dart';
 import 'package:bookly/services/home/data/models/book_model.dart';
 import 'package:bookly/services/home/presentation/views/widgets/book_image_widget.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class SimilarListItem extends StatelessWidget {
   const SimilarListItem({super.key, required this.bookModel});
@@ -11,7 +13,9 @@ class SimilarListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(5.0),
-      child: BookImageWidget(bookModel: bookModel),
+      child: InkWell(onTap: () {
+        Navigator.pushNamed(context, DetailsView.routeName,arguments: bookModel);
+      },child: BookImageWidget(bookModel: bookModel)),
     );
   }
 }

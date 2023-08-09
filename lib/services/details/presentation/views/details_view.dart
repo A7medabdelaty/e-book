@@ -1,10 +1,11 @@
 import 'package:bookly/core/utils/service_locator.dart';
 import 'package:bookly/services/details/data/repos/details_repo_impl.dart';
 import 'package:bookly/services/details/presentation/view%20model/similar_books_cubit.dart';
-import 'package:bookly/services/details/presentation/view/widgets/book_info.dart';
-import 'package:bookly/services/details/presentation/view/widgets/custom_appbar.dart';
-import 'package:bookly/services/details/presentation/view/widgets/custom_buttons.dart';
-import 'package:bookly/services/details/presentation/view/widgets/similar_books_list.dart';
+import 'package:bookly/services/details/presentation/views/widgets/book_info.dart';
+import 'package:bookly/services/details/presentation/views/widgets/custom_appbar.dart';
+import 'package:bookly/services/details/presentation/views/widgets/custom_buttons.dart';
+import 'package:bookly/services/details/presentation/views/widgets/more_title.dart';
+import 'package:bookly/services/details/presentation/views/widgets/similar_books_list.dart';
 import 'package:bookly/services/home/data/models/book_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,8 +28,17 @@ class DetailsView extends StatelessWidget {
               const DetailsAppbar(),
               BookInformationCard(bookModel: bookModel),
               CustomButtons(
-                price: bookModel.saleInfo?.listPrice?.amount?.round().toString() ?? 'Free',
+                price:
+                    bookModel.saleInfo?.listPrice?.amount?.round().toString() ??
+                        'Free',
                 countryCode: bookModel.saleInfo?.listPrice?.currencyCode ?? '',
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 30.0),
+                child: MoreTitleText(),
+              ),
+              const SizedBox(
+                height: 15,
               ),
               SimilarBooksList(bookModel: bookModel),
             ],
