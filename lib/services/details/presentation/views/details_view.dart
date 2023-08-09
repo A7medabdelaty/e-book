@@ -27,12 +27,7 @@ class DetailsView extends StatelessWidget {
             children: [
               const DetailsAppbar(),
               BookInformationCard(bookModel: bookModel),
-              CustomButtons(
-                price:
-                    bookModel.saleInfo?.listPrice?.amount?.round().toString() ??
-                        'Free',
-                countryCode: bookModel.saleInfo?.listPrice?.currencyCode ?? '',
-              ),
+              CustomButtons(bookModel: bookModel),
               const Padding(
                 padding: EdgeInsets.only(left: 30.0),
                 child: MoreTitleText(),
