@@ -16,7 +16,7 @@ class SearchRepoImpl extends SearchRepo {
     try {
       Map<String, dynamic> response = await apiService.get(
           endPoint:
-              'volumes?Sorting=newest &maxResults=40&projection=full&q=$bookName');
+              'volumes?&maxResults=40&projection=full&q=$bookName');
       List<BookModel> books = [];
       for (var item in response['items']) {
         try {
